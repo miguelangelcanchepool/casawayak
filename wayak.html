@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Villa Wayak — Luxury Village Isla Mujeres</title>
+  <meta name="description" content="Villa Wayak — Alberca infinita frente al Caribe, palapa monumental, 4 recámaras king. Isla Mujeres, México. Reserva directa sin comisiones." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --forest:      #3D5229;
+      --forest-dark: #2C3D1C;
+      --champagne:   #C9BA9B;
+      --ivory:       #EBE8E0;
+      --sage:        #C5C89A;
+      --white:       #FAFAF8;
+      --text-dark:   #1E2818;
+      --text-mid:    #4A5E30;
+      --transition:  220ms ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text-dark); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    .section-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--champagne); margin-bottom: 1.25rem; display: block; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; transition: background var(--transition); }
+    nav.scrolled { background: rgba(235,232,224,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,186,155,0.3); }
+    .nav-logo-link { display: flex; align-items: center; }
+    .nav-logo { height: 44px; width: auto; display: block; }
+    .nav-logo-scrolled { display: none; }
+    nav.scrolled .nav-logo-default { display: none; }
+    nav.scrolled .nav-logo-scrolled { display: block; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,250,248,0.85); transition: color var(--transition); }
+    nav.scrolled .nav-links a { color: var(--text-mid); }
+    .nav-links a:hover, nav.scrolled .nav-links a:hover { color: var(--champagne); }
+    .nav-cta { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid rgba(250,250,248,0.6); color: var(--white); padding: 0.6rem 1.4rem; transition: background var(--transition), color var(--transition), border-color var(--transition); }
+    nav.scrolled .nav-cta { border-color: var(--forest); color: var(--forest); }
+    .nav-cta:hover { background: var(--white); color: var(--forest); }
+    nav.scrolled .nav-cta:hover { background: var(--forest); color: var(--white); }
+
+    /* HERO */
+    .hero { position: relative; height: 100vh; min-height: 640px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(20,32,14,0.5) 0%, rgba(20,32,14,0.18) 45%, rgba(20,32,14,0.65) 100%), url('assets/fotos/wayak/Wayak WEB 4.jpg') center/cover no-repeat; transform: scale(1.04); transition: transform 8s ease; }
+    .hero:hover .hero-bg { transform: scale(1.0); }
+    .hero-content { position: relative; text-align: center; color: var(--white); padding: 0 1.5rem; }
+    .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--champagne); margin-bottom: 1.5rem; }
+    .hero-logo-img { width: min(240px, 50vw); height: auto; margin: 0 auto 0.75rem; display: block; filter: drop-shadow(0 2px 24px rgba(0,0,0,0.2)); }
+    .hero-villa-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(0.9rem, 1.8vw, 1.2rem); font-weight: 300; letter-spacing: 0.45em; text-transform: uppercase; color: rgba(250,250,248,0.7); margin-bottom: 1.25rem; }
+    .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 300; font-style: italic; line-height: 1.05; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--champagne); color: var(--text-dark); padding: 1rem 2.5rem; cursor: pointer; transition: background var(--transition); display: inline-block; }
+    .btn-primary:hover { background: var(--white); }
+    .btn-ghost { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid rgba(250,250,248,0.5); color: var(--white); padding: 1rem 2.5rem; display: inline-block; transition: background var(--transition); }
+    .btn-ghost:hover { background: rgba(250,250,248,0.1); }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(250,250,248,0.5); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(250,250,248,0.5), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+    /* STATS BAR */
+    .stats-bar { background: var(--forest); display: flex; justify-content: center; flex-wrap: wrap; }
+    .stat { display: flex; flex-direction: column; align-items: center; padding: 1.4rem 2.5rem; border-right: 1px solid rgba(201,186,155,0.18); }
+    .stat:last-child { border-right: none; }
+    .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; color: var(--champagne); line-height: 1; margin-bottom: 0.25rem; }
+    .stat-label { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,250,248,0.55); }
+
+    /* INTRO */
+    .intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; padding: 7rem 5rem; max-width: 1300px; margin: 0 auto; }
+    .intro-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--forest); margin-bottom: 1.5rem; }
+    .intro-text h2 em { font-style: italic; color: var(--champagne); }
+    .intro-text p { font-size: 0.92rem; line-height: 1.9; color: #5a5a52; margin-bottom: 1.1rem; }
+    .intro-img { height: 580px; overflow: hidden; }
+    .intro-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms ease; }
+    .intro-img:hover img { transform: scale(1.03); }
+
+    /* GALLERY */
+    .gallery-section { padding: 0 3rem 6rem; max-width: 1400px; margin: 0 auto; }
+    .gallery-header { text-align: center; margin-bottom: 2.5rem; }
+    .gallery-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--forest); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 260px 260px 260px; gap: 0.6rem; }
+    .g-item { overflow: hidden; position: relative; cursor: pointer; }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms ease; }
+    .g-item:hover img { transform: scale(1.05); }
+    .g-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,40,22,0.4), transparent 55%); opacity: 0; transition: opacity var(--transition); }
+    .g-item:hover .g-overlay { opacity: 1; }
+    .g-feature { grid-column: span 2; grid-row: span 2; }
+    .g-tall { grid-row: span 2; }
+
+    /* AMENITIES */
+    .amenities { background: var(--ivory); padding: 6rem 3rem; }
+    .amenities-inner { max-width: 1100px; margin: 0 auto; }
+    .amenities-header { text-align: center; margin-bottom: 3.5rem; }
+    .amenities-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--forest); }
+    .amenities-header h2 em { font-style: italic; color: var(--champagne); }
+    .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.75rem; }
+    .amenity { padding: 1.75rem; background: var(--white); }
+    .amenity-icon { width: 36px; height: 36px; color: var(--champagne); margin-bottom: 1rem; }
+    .amenity h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; color: var(--forest); margin-bottom: 0.35rem; }
+    .amenity p { font-size: 0.8rem; color: #6b6b62; line-height: 1.6; }
+
+    /* HIGHLIGHT */
+    .highlight { position: relative; height: 68vh; min-height: 440px; overflow: hidden; }
+    .highlight img { width: 100%; height: 100%; object-fit: cover; }
+    .highlight-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(28,40,22,0.75) 0%, rgba(28,40,22,0.08) 65%); display: flex; align-items: center; padding: 0 6rem; }
+    .highlight-text { max-width: 480px; color: var(--white); }
+    .highlight-text blockquote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3vw, 2.8rem); font-weight: 300; font-style: italic; line-height: 1.35; color: var(--champagne); margin-bottom: 1.5rem; }
+    .highlight-text cite { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(250,250,248,0.5); font-style: normal; }
+
+    /* CTA */
+    .cta-section { background: var(--forest-dark); padding: 6rem 3rem; text-align: center; }
+    .cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 0.75rem; }
+    .cta-section h2 em { font-style: italic; color: var(--champagne); }
+    .cta-section > p { font-size: 0.88rem; color: rgba(250,250,248,0.55); margin-bottom: 2.5rem; }
+    .cta-group { display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; }
+    .btn-wa { display: inline-flex; align-items: center; gap: 0.6rem; background: #25D366; color: #fff; padding: 1rem 2.25rem; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background var(--transition); font-family: 'Inter', sans-serif; }
+    .btn-wa:hover { background: #1ebe5a; }
+    .btn-wa svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+    .btn-outline-light { display: inline-block; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid rgba(250,250,248,0.35); color: var(--white); padding: 1rem 2.25rem; transition: background var(--transition); }
+    .btn-outline-light:hover { background: rgba(250,250,248,0.08); }
+    .trust-signals { display: flex; justify-content: center; gap: 2.5rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .trust-signal { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(250,250,248,0.35); display: flex; align-items: center; gap: 0.5rem; }
+    .trust-signal::before { content: ''; width: 4px; height: 4px; background: var(--champagne); border-radius: 50%; opacity: 0.5; }
+
+    /* OTHER VILLA */
+    .other-villa { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .other-villa-img { height: 420px; overflow: hidden; }
+    .other-villa-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms ease; }
+    .other-villa-img:hover img { transform: scale(1.04); }
+    .other-villa-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; color: var(--forest); line-height: 1.2; margin-bottom: 1.25rem; }
+    .other-villa-text h2 em { font-style: italic; color: var(--champagne); }
+    .other-villa-text p { font-size: 0.88rem; color: #5a5a52; line-height: 1.85; margin-bottom: 0.75rem; }
+    .other-villa-text p:last-of-type { font-size: 0.75rem; color: var(--champagne); letter-spacing: 0.05em; margin-bottom: 2rem; }
+    .btn-forest { display: inline-block; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--forest); color: var(--white); padding: 0.9rem 2rem; transition: background var(--transition); }
+    .btn-forest:hover { background: var(--forest-dark); }
+
+    /* FOOTER */
+    footer { background: var(--text-dark); color: rgba(235,232,224,0.7); padding: 5rem 3rem 2.5rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 4rem; }
+    .footer-logo-img { height: 64px; width: auto; margin-bottom: 1.25rem; display: block; opacity: 0.85; }
+    .footer-brand p { font-size: 0.82rem; line-height: 1.8; max-width: 280px; }
+    .footer-col h4 { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--champagne); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.65rem; }
+    .footer-col a { font-size: 0.82rem; transition: color var(--transition); }
+    .footer-col a:hover { color: var(--champagne); }
+    .footer-bottom { border-top: 1px solid rgba(201,186,155,0.15); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.72rem; }
+
+    /* WA FLOAT */
+    .wa-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; display: flex; align-items: center; gap: 0.6rem; background: #25D366; color: #fff; padding: 0.85rem 1.4rem 0.85rem 1rem; box-shadow: 0 4px 20px rgba(37,211,102,0.35); cursor: pointer; transition: transform var(--transition), box-shadow var(--transition); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+    .wa-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,211,102,0.45); }
+    .wa-float svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+
+    /* FADE */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 600ms ease, transform 600ms ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .intro { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 3rem; }
+      .intro-img { height: 400px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .g-feature { grid-column: span 2; grid-row: span 1; height: 300px; }
+      .g-tall { grid-row: span 1; }
+      .other-villa { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .stat { padding: 1rem 1.25rem; }
+      .intro, .gallery-section, .amenities, .cta-section, .other-villa { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .g-feature { height: 220px; }
+      .highlight-overlay { padding: 0 2rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .wa-float span { display: none; }
+      .wa-float { padding: 0.9rem; border-radius: 50%; right: 1.5rem; bottom: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- WA FLOAT -->
+  <a class="wa-float" href="https://wa.me/5219980000000?text=Hola!%20Me%20interesa%20Villa%20Wayak%20en%20Isla%20Mujeres." target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>¿Preguntas? Escríbenos</span>
+  </a>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo-link">
+      <img class="nav-logo nav-logo-default" src="branding/Logo/Png (Transparente)/Wayak_Logo_1.png" alt="Wayak Luxury Village" />
+      <img class="nav-logo nav-logo-scrolled" src="branding/Logo/Png (Transparente)/Wayak_Logo_4.png" alt="Wayak Luxury Village" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">El Village</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="kamala.html">Villa Kamala</a></li>
+    </ul>
+    <a class="nav-cta" href="#reservar">Reservar</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Isla Mujeres, Quintana Roo</p>
+      <img class="hero-logo-img" src="branding/Logo/Png (Transparente)/Wayak_Logo_1.png" alt="Wayak Luxury Village" />
+      <p class="hero-villa-name">Villa Wayak</p>
+      <p class="hero-tagline">El Caribe, sin límites.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/5219980000000?text=Hola!%20Quiero%20reservar%20Villa%20Wayak." target="_blank" rel="noopener">Reservar ahora</a>
+        <a class="btn-ghost" href="#galeria">Ver galería</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="hero-scroll-line"></div><span>Descubrir</span></div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-value">4</span><span class="stat-label">Recámaras King</span></div>
+    <div class="stat"><span class="stat-value">10</span><span class="stat-label">Huéspedes</span></div>
+    <div class="stat"><span class="stat-value">∞</span><span class="stat-label">Alberca infinita</span></div>
+    <div class="stat"><span class="stat-value">100%</span><span class="stat-label">Vista Caribe</span></div>
+    <div class="stat"><span class="stat-value">24/7</span><span class="stat-label">Concierge</span></div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="intro-text fade-in">
+      <span class="section-label">La experiencia Wayak</span>
+      <h2>Donde el agua no sabe<br/>dónde termina<br/>el <em>Caribe</em></h2>
+      <p>Villa Wayak es la casa que lo empezó todo. La más amplia del village, la más dramática, la que hace que los huéspedes guarden silencio al entrar por primera vez.</p>
+      <p>Su alberca infinita no distingue dónde termina el agua privada y dónde empieza el mar turquesa de Isla Mujeres. Bajo la palapa monumental, el tiempo se mueve diferente.</p>
+      <p>Cuatro recámaras king diseñadas con materiales naturales. Lounge de película. Comedor con ventanal al Caribe. Una capilla privada como ninguna otra en la isla. Para grupos que exigen lo mejor — sin excepción.</p>
+      <a class="btn-primary" href="https://wa.me/5219980000000?text=Hola!%20Me%20interesa%20Villa%20Wayak." target="_blank" rel="noopener" style="margin-top:1.25rem;">Consultar disponibilidad</a>
+    </div>
+    <div class="intro-img fade-in">
+      <img src="assets/fotos/wayak/Wayak WEB 30.jpg" alt="Villa Wayak — alberca al atardecer con fire bowl" />
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="galeria">
+    <div class="gallery-header fade-in">
+      <span class="section-label" style="text-align:center;">Galería</span>
+      <h2>Villa Wayak en imágenes</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item g-feature"><img src="assets/fotos/wayak/Wayak WEB 5.jpg" alt="Alberca infinita con Caribe turquesa" /><div class="g-overlay"></div></div>
+      <div class="g-item g-tall"><img src="assets/fotos/wayak/Wayak WEB 10.jpg" alt="Recámara king bajo palapa con vista al mar" loading="lazy" /><div class="g-overlay"></div></div>
+      <div class="g-item"><img src="assets/fotos/wayak/Wayak WEB 2.jpg" alt="Comedor con ventanal al Caribe" loading="lazy" /><div class="g-overlay"></div></div>
+      <div class="g-item"><img src="assets/fotos/wayak/Wayak WEB 3.jpg" alt="Baño de lujo con tina y vista al mar" loading="lazy" /><div class="g-overlay"></div></div>
+      <div class="g-item"><img src="assets/fotos/wayak/Wayak WEB 6.jpg" alt="Terraza exterior con sillón egg y palmeras" loading="lazy" /><div class="g-overlay"></div></div>
+      <div class="g-item"><img src="assets/fotos/wayak/Wayak WEB 25.jpg" alt="Lounge abierto bajo palapa con alberca" loading="lazy" /><div class="g-overlay"></div></div>
+      <div class="g-item"><img src="assets/fotos/wayak/Wayak WEB 7.jpg" alt="Sala interior con vista al mar" loading="lazy" /><div class="g-overlay"></div></div>
+      <div class="g-item"><img src="assets/fotos/wayak/Wayak WEB 20.jpg" alt="Sala principal con arte driftwood" loading="lazy" /><div class="g-overlay"></div></div>
+      <div class="g-item"><img src="assets/fotos/wayak/Wayak WEB 15.jpg" alt="Baño con bañera y ventana al mar" loading="lazy" /><div class="g-overlay"></div></div>
+      <div class="g-item"><img src="assets/fotos/wayak/Wayak WEB 1.jpg" alt="Capilla privada con techo de bambú" loading="lazy" /><div class="g-overlay"></div></div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="amenities">
+    <div class="amenities-inner">
+      <div class="amenities-header fade-in">
+        <span class="section-label" style="text-align:center;">Incluido en tu estadía</span>
+        <h2>Todo lo que <em>necesitas</em></h2>
+      </div>
+      <div class="amenities-grid">
+        <div class="amenity fade-in">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8"/></svg>
+          <h4>Alberca Infinita</h4><p>Frente al Caribe. El horizonte como fondo. Disponible las 24 horas.</p>
+        </div>
+        <div class="amenity fade-in">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <h4>4 Recámaras King</h4><p>Materiales naturales, clima y vista al jardín o al mar en cada habitación.</p>
+        </div>
+        <div class="amenity fade-in">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <h4>Concierge 24/7</h4><p>Reservas, tours y traslados en Isla Mujeres. Un equipo a tu servicio.</p>
+        </div>
+        <div class="amenity fade-in">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+          <h4>Chef Privado</h4><p>Disponible bajo petición. Gastronomía de autor con ingredientes del Caribe.</p>
+        </div>
+        <div class="amenity fade-in">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <h4>Capilla Privada</h4><p>Un espacio único en la isla. Techo de bambú artesanal y vista al horizonte.</p>
+        </div>
+        <div class="amenity fade-in">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <h4>Traslados VIP</h4><p>Coordinación de ferry y transporte privado desde Cancún.</p>
+        </div>
+        <div class="amenity fade-in">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <h4>Lounge Palapa</h4><p>Sala abierta monumental. Sillones de diseño, brisa marina, pool view.</p>
+        </div>
+        <div class="amenity fade-in">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <h4>Spa en Villa</h4><p>Terapeutas a domicilio. Masajes y tratamientos bajo petición.</p>
+        </div>
+        <div class="amenity fade-in">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h4>Cocina Gourmet</h4><p>Completamente equipada para quien quiera cocinar. O espera al chef.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight">
+    <img src="assets/fotos/wayak/Wayak WEB 25.jpg" alt="Lounge Wayak con alberca y Caribe de fondo" loading="lazy" />
+    <div class="highlight-overlay">
+      <div class="highlight-text fade-in">
+        <blockquote>"El tipo de lugar donde no necesitas plan. El plan es estar aquí."</blockquote>
+        <cite>Wayak Luxury Village — Isla Mujeres</cite>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section" id="reservar">
+    <span class="section-label" style="text-align:center;">Reserva directa</span>
+    <h2>¿Cuándo es tu <em>escapada</em>?</h2>
+    <p>Fechas limitadas. Solo disponible bajo reserva. Sin comisiones de intermediarios.</p>
+    <div class="cta-group">
+      <a class="btn-wa" href="https://wa.me/5219980000000?text=Hola!%20Quiero%20reservar%20Villa%20Wayak.%20%C2%BFTienen%20disponibilidad?" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consultar por WhatsApp
+      </a>
+      <a class="btn-outline-light" href="index.html#reservaciones">Reservar en línea</a>
+    </div>
+    <div class="trust-signals">
+      <span class="trust-signal">Wayak Luxury Village</span>
+      <span class="trust-signal">Isla Mujeres, Quintana Roo</span>
+      <span class="trust-signal">Reserva directa sin comisiones</span>
+    </div>
+  </section>
+
+  <!-- OTRA VILLA -->
+  <section class="other-villa">
+    <div class="other-villa-img fade-in">
+      <img src="assets/fotos/kamala/Kamala WEB 7.jpg" alt="Villa Kamala exterior con alberca privada" loading="lazy" />
+    </div>
+    <div class="other-villa-text fade-in">
+      <span class="section-label">También en el village</span>
+      <h2>Villa <em>Kamala</em></h2>
+      <p>Íntima, cálida, perfectamente imperfecta. Con su propia piscina privada rodeada de bugambilia, hamacas bajo palapa y una atmósfera que se siente como llegar a casa — pero en la mejor versión de casa que hayas conocido.</p>
+      <p>3 recámaras · hasta 6 huéspedes · Alberca privada con jardín</p>
+      <a class="btn-forest" href="kamala.html">Ver Villa Kamala →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo-img" src="branding/Variable 1/Png/Wayak_V1_1.png" alt="Wayak Luxury Village" />
+        <p>Un village privado en Isla Mujeres donde el lujo verdadero no se mide en metros cuadrados, sino en la calidad de los momentos.</p>
+      </div>
+      <div class="footer-col">
+        <h4>El Village</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="wayak.html">Villa Wayak</a></li>
+          <li><a href="kamala.html">Villa Kamala</a></li>
+          <li><a href="index.html#amenidades">Experiencias</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="index.html#ubicacion">Ubicación</a></li>
+          <li><a href="index.html#reservaciones">Reservaciones</a></li>
+          <li><a href="#">Políticas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/5219980000000" target="_blank">WhatsApp</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="index.html">El Village</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Wayak Luxury Village — Isla Mujeres. Todos los derechos reservados.</span>
+      <span style="opacity:0.4;font-size:0.68rem;letter-spacing:0.1em;">Diseño por ilinium</span>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

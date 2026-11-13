@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wayak Luxury Village</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --forest:      #3D5229;
+      --forest-dark: #2C3D1C;
+      --champagne:   #C9BA9B;
+      --ivory:       #EBE8E0;
+      --sage:        #C5C89A;
+      --white:       #FAFAF8;
+      --text-dark:   #1E2818;
+      --text-mid:    #4A5E30;
+      --radius-sm:   2px;
+      --transition:  220ms ease;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Typography helpers ── */
+    .serif { font-family: 'Cormorant Garamond', serif; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      transition: background var(--transition), backdrop-filter var(--transition);
+    }
+    nav.scrolled {
+      background: rgba(235, 232, 224, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,186,155,0.3);
+    }
+    .nav-logo-link { display: flex; align-items: center; }
+    .nav-logo {
+      height: 48px;
+      width: auto;
+      display: block;
+      transition: opacity var(--transition);
+    }
+    .nav-logo-scrolled { display: none; }
+    nav.scrolled .nav-logo-default { display: none; }
+    nav.scrolled .nav-logo-scrolled { display: block; }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.85);
+      transition: color var(--transition);
+    }
+    nav.scrolled .nav-links a { color: var(--text-mid); }
+    .nav-links a:hover { color: var(--champagne); }
+    nav.scrolled .nav-links a:hover { color: var(--forest); }
+    .nav-cta {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1px solid rgba(250,250,248,0.6);
+      color: var(--white);
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    nav.scrolled .nav-cta {
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+    .nav-cta:hover {
+      background: var(--white);
+      color: var(--forest);
+      border-color: var(--white);
+    }
+    nav.scrolled .nav-cta:hover {
+      background: var(--forest);
+      color: var(--white);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--forest-dark);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(30,40,24,0.45) 0%,
+          rgba(30,40,24,0.2) 40%,
+          rgba(30,40,24,0.55) 100%),
+        url('img/hero.jpg') center/cover no-repeat;
+      transform: scale(1.04);
+      transition: transform 8s ease;
+    }
+    .hero:hover .hero-bg { transform: scale(1.0); }
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: var(--white);
+      padding: 0 1.5rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--champagne);
+      margin-bottom: 1.75rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 9vw, 9rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--champagne);
+    }
+    .hero-subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.7);
+      margin-bottom: 3rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--champagne);
+      color: var(--text-dark);
+      padding: 1rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+    }
+    .btn-primary:hover {
+      background: var(--white);
+      color: var(--forest);
+    }
+    .btn-ghost {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid rgba(250,250,248,0.5);
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .btn-ghost:hover {
+      background: rgba(250,250,248,0.1);
+      border-color: var(--white);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(250,250,248,0.55);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(250,250,248,0.5), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.5; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* ── HERO LOGO ── */
+    .hero-logo-img {
+      width: min(280px, 55vw);
+      height: auto;
+      margin: 0 auto 2rem;
+      display: block;
+      filter: drop-shadow(0 2px 24px rgba(0,0,0,0.18));
+    }
+
+    /* ── FOOTER LOGO ── */
+    .footer-logo-img {
+      height: 72px;
+      width: auto;
+      margin-bottom: 1.25rem;
+      display: block;
+      opacity: 0.88;
+    }
+    .footer-brand .brand-name,
+    .footer-brand .brand-tagline { display: none; }
+
+    /* ── EXPERIENCE MONOGRAMA ── */
+    .experience {
+      position: relative;
+      overflow: hidden;
+    }
+    .experience-monograma {
+      position: absolute;
+      width: 340px;
+      height: auto;
+      opacity: 0.04;
+      right: -40px;
+      bottom: -40px;
+      pointer-events: none;
+      filter: invert(1);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      justify-content: center;
+      padding: 4rem 3rem 0;
+    }
+    .divider-line { flex: 1; max-width: 120px; height: 1px; background: var(--champagne); opacity: 0.5; }
+    .divider-mark {
+      width: 44px;
+      height: auto;
+      opacity: 0.55;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 5rem 3rem 6rem;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--champagne);
+      margin-bottom: 1.5rem;
+    }
+    .intro h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--forest);
+      margin-bottom: 1.75rem;
+    }
+    .intro h2 em { font-style: italic; color: var(--champagne); }
+    .intro p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: #5a5a52;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── GALLERY GRID ── */
+    .gallery {
+      padding: 0 3rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 340px 340px;
+      gap: 0.75rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .gallery-item {
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,40,24,0.5) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+    /* ── FEATURES / AMENITIES ── */
+    .features {
+      background: var(--ivory);
+      padding: 6rem 3rem;
+    }
+    .features-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 4rem;
+    }
+    .features-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--forest);
+      line-height: 1.2;
+    }
+    .features-header h2 em { font-style: italic; color: var(--champagne); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--white);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(61,82,41,0.1);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1.5rem;
+      color: var(--champagne);
+    }
+    .feature-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--forest);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    .feature-card p {
+      font-size: 0.85rem;
+      color: #6b6b62;
+      line-height: 1.7;
+    }
+
+    /* ── VILLAS SECTION ── */
+    .villas {
+      padding: 6rem 3rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .villas-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .villas-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--forest);
+      line-height: 1.2;
+    }
+    .villas-header h2 em { font-style: italic; color: var(--champagne); }
+    .villas-header a {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--forest);
+      border-bottom: 1px solid var(--champagne);
+      padding-bottom: 0.2rem;
+      transition: color var(--transition);
+      cursor: pointer;
+    }
+    .villas-header a:hover { color: var(--champagne); }
+    .villas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2rem;
+    }
+    .villa-card {
+      cursor: pointer;
+    }
+    .villa-card-img {
+      height: 320px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .villa-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms ease;
+    }
+    .villa-card:hover .villa-card-img img { transform: scale(1.04); }
+    .villa-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--champagne);
+      margin-bottom: 0.5rem;
+    }
+    .villa-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+    .villa-card p {
+      font-size: 0.85rem;
+      color: #6b6b62;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .villa-specs {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--text-mid);
+      border-top: 1px solid rgba(201,186,155,0.35);
+      padding-top: 1rem;
+    }
+    .villa-spec { display: flex; align-items: center; gap: 0.4rem; }
+    .villa-spec svg { width: 14px; height: 14px; opacity: 0.7; }
+    .villa-cta {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--forest);
+      text-decoration: none;
+      border-bottom: 1px solid var(--champagne);
+      padding-bottom: 2px;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .villa-cta:hover { color: var(--champagne); border-color: var(--forest); }
+
+    /* ── EXPERIENCE / PULL QUOTE ── */
+    .experience {
+      background: var(--forest);
+      padding: 7rem 3rem;
+      text-align: center;
+      color: var(--white);
+    }
+    .experience blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.4;
+      max-width: 820px;
+      margin: 0 auto 2rem;
+      color: var(--champagne);
+    }
+    .experience cite {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.55);
+      font-style: normal;
+    }
+
+    /* ── LOCATION ── */
+    .location {
+      padding: 6rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .location-text .section-label { text-align: left; }
+    .location-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 300;
+      color: var(--forest);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .location-text h2 em { font-style: italic; color: var(--champagne); }
+    .location-text p {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: #5a5a52;
+      margin-bottom: 2rem;
+    }
+    .location-map {
+      height: 420px;
+      background: var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--forest);
+      letter-spacing: 0.1em;
+      opacity: 0.75;
+    }
+
+    /* ── RESERVATIONS ── */
+    .reservations {
+      background: var(--ivory);
+      padding: 6rem 3rem;
+      text-align: center;
+    }
+    .reservations h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--forest);
+      margin-bottom: 0.75rem;
+    }
+    .reservations h2 em { font-style: italic; color: var(--champagne); }
+    .reservations > p {
+      font-size: 0.9rem;
+      color: #6b6b62;
+      margin-bottom: 3rem;
+    }
+    .booking-bar {
+      display: flex;
+      gap: 0;
+      max-width: 860px;
+      margin: 0 auto;
+      border: 1px solid rgba(201,186,155,0.5);
+      background: var(--white);
+      flex-wrap: wrap;
+    }
+    .booking-field {
+      flex: 1;
+      min-width: 160px;
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid rgba(201,186,155,0.4);
+      text-align: left;
+    }
+    .booking-field:last-of-type { border-right: none; }
+    .booking-field label {
+      display: block;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--champagne);
+      margin-bottom: 0.35rem;
+    }
+    .booking-field input,
+    .booking-field select {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      outline: none;
+      cursor: pointer;
+    }
+    .booking-submit {
+      background: var(--forest);
+      color: var(--white);
+      border: none;
+      padding: 1.25rem 2.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition);
+      min-width: 160px;
+    }
+    .booking-submit:hover { background: var(--forest-dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text-dark);
+      color: rgba(235,232,224,0.7);
+      padding: 5rem 3rem 2.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--champagne);
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .footer-brand .brand-tagline {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(201,186,155,0.55);
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand p {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--champagne);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.65rem; }
+    .footer-col a {
+      font-size: 0.82rem;
+      transition: color var(--transition);
+      cursor: pointer;
+    }
+    .footer-col a:hover { color: var(--champagne); }
+    .footer-bottom {
+      border-top: 1px solid rgba(201,186,155,0.15);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.72rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 280px 280px 280px;
+      }
+      .gallery-item:first-child { grid-row: span 1; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .location { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+      .gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        padding: 0 1.5rem 4rem;
+      }
+      .gallery-item { height: 260px; }
+      .gallery-item:first-child { grid-row: span 1; height: 320px; }
+      .features { padding: 4rem 1.5rem; }
+      .villas { padding: 4rem 1.5rem; }
+      .villas-grid { grid-template-columns: 1fr; }
+      .experience { padding: 5rem 1.5rem; }
+      .reservations { padding: 4rem 1.5rem; }
+      .booking-bar { flex-direction: column; }
+      .booking-field { border-right: none; border-bottom: 1px solid rgba(201,186,155,0.4); }
+      .booking-submit { width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .intro, .features, .villas, .reservations { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+
+    /* ── Scroll fade-in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo-link">
+      <img class="nav-logo nav-logo-default" src="branding/Logo/Png (Transparente)/Wayak_Logo_1.png" alt="Wayak Luxury Village" />
+      <img class="nav-logo nav-logo-scrolled" src="branding/Logo/Png (Transparente)/Wayak_Logo_4.png" alt="Wayak Luxury Village" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#villas">Villas</a></li>
+      <li><a href="#amenidades">Amenidades</a></li>
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+    </ul>
+    <a class="nav-cta" href="#reservaciones">Reservar</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Isla Mujeres, Quintana Roo</p>
+      <img class="hero-logo-img" src="branding/Logo/Png (Transparente)/Wayak_Logo_1.png" alt="Wayak Luxury Village" />
+      <p class="hero-subtitle">Donde el paraíso es privado</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#reservaciones">Reservar experiencia</a>
+        <a class="btn-ghost" href="#villas">Explorar villas</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Descubrir</span>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <img class="divider-mark" src="branding/Monograma/Png/Wayak_Monograma_1.png" alt="" aria-hidden="true" />
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro fade-in">
+    <p class="section-label">Isla Mujeres, México</p>
+    <h2>El lujo que<br/><em>no se ve</em></h2>
+    <p>
+      Wayak nació de una idea simple: que el lujo verdadero no se mide en metros cuadrados,
+      sino en la calidad de los momentos que ocurren dentro de ellos.
+      En el corazón de Isla Mujeres, el Caribe mexicano le da forma a un village privado
+      donde cada detalle ha sido diseñado para desaparecer —
+      para que lo único que recuerdes sea cómo te sentiste.
+    </p>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" aria-label="Galería fotográfica Wayak">
+    <div class="gallery-item">
+      <img src="img/gallery-1.jpg" alt="Alberca privada con vista al Caribe" loading="lazy" />
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="img/gallery-2.jpg" alt="Comedor con vista al mar Caribe" loading="lazy" />
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="img/gallery-3.jpg" alt="Recámara con palapa y vista al mar" loading="lazy" />
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="img/gallery-4.jpg" alt="Terraza exterior con palmeras" loading="lazy" />
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="img/gallery-5.jpg" alt="Lounge abierto con vista a la alberca" loading="lazy" />
+      <div class="gallery-item-overlay"></div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="features" id="amenidades">
+    <div class="features-header fade-in">
+      <p class="section-label">Experiencias Wayak</p>
+      <h2>Más que<br/>una <em>estadía</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <h3>Villas Privadas</h3>
+        <p>Acceso exclusivo y privacidad total. Dos villas de diseño arquitectónico de excepción en el corazón de Isla Mujeres.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/>
+        </svg>
+        <h3>Alberca Privada</h3>
+        <p>Piscina de diseño que parece fundirse con el horizonte del Caribe. Disponible las 24 horas, solo para ti.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+        </svg>
+        <h3>Concierge 24/7</h3>
+        <p>Un equipo dedicado a tu estadía. Reservas, tours, traslados y experiencias exclusivas en Isla Mujeres. Tú pide.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+        </svg>
+        <h3>Chef Privado</h3>
+        <p>Gastronomía de autor en tu villa. Menús personalizados con ingredientes del Caribe. Desde desayunos al borde de la alberca hasta cenas bajo las estrellas.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <h3>Spa en Villa</h3>
+        <p>Tratamientos a domicilio con terapeutas especializados. Masajes, faciales y rituales de bienestar sin salir de tu villa.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+          <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+        </svg>
+        <h3>Aventura &amp; Mar</h3>
+        <p>Snorkel en arrecifes privados, kayak al amanecer, yoga en terraza. La isla entera es tu patio trasero.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VILLAS -->
+  <section class="villas" id="villas">
+    <div class="villas-header fade-in">
+      <div>
+        <p class="section-label">Nuestras propiedades</p>
+        <h2>Elige tu <em>villa</em> ideal</h2>
+      </div>
+      <a href="#reservaciones">Ver disponibilidad</a>
+    </div>
+    <div class="villas-grid">
+      <div class="villa-card fade-in">
+        <div class="villa-card-img">
+          <img src="img/villa-wayak.jpg" alt="Villa Wayak — alberca con vista al Caribe" loading="lazy" />
+        </div>
+        <p class="villa-tag">Villa Principal</p>
+        <h3>Villa Wayak</h3>
+        <p>La casa que lo empezó todo. Arquitectura orgánica en diálogo con el Caribe tropical. Espacios que respiran, alberca privada y terrazas diseñadas para la contemplación.</p>
+        <div class="villa-specs">
+          <div class="villa-spec">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Recámaras King
+          </div>
+          <div class="villa-spec">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+            Alberca privada
+          </div>
+          <div class="villa-spec">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Grupos &amp; familias
+          </div>
+        </div>
+        <a href="wayak.html" class="villa-cta">Ver villa →</a>
+      </div>
+      <div class="villa-card fade-in">
+        <div class="villa-card-img">
+          <img src="img/villa-kamala.jpg" alt="Villa Kamala — sala de estar de diseño" loading="lazy" />
+        </div>
+        <p class="villa-tag">Villa Íntima</p>
+        <h3>Villa Kamala</h3>
+        <p>Intimidad en su forma más sofisticada. Diseñada para parejas y familias pequeñas que exigen lo mejor. Un refugio dentro del refugio. El Caribe, a la medida justa.</p>
+        <div class="villa-specs">
+          <div class="villa-spec">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Recámaras King
+          </div>
+          <div class="villa-spec">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+            Terraza panorámica
+          </div>
+          <div class="villa-spec">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Parejas &amp; familias
+          </div>
+        </div>
+        <a href="kamala.html" class="villa-cta">Ver villa →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section class="experience" id="experiencia">
+    <img class="experience-monograma" src="branding/Monograma/Png/Wayak_Monograma_1.png" alt="" aria-hidden="true" />
+    <blockquote class="fade-in">
+      "Wayak no fue construido para impresionar.<br/>Fue construido para <em>permanecer</em>."
+    </blockquote>
+    <cite>Wayak Luxury Village — Isla Mujeres, México</cite>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location" id="ubicacion">
+    <div class="location-text fade-in">
+      <p class="section-label">Dónde encontrarnos</p>
+      <h2>En el corazón del <em>Caribe</em></h2>
+      <p>
+        Isla Mujeres es uno de los secretos mejor guardados del Caribe mexicano.
+        A tan solo 20 minutos en ferry desde Cancún, encontrarás un mundo completamente diferente:
+        sin prisa, sin ruido, con el mar más azul que hayas visto.
+      </p>
+      <p>
+        Wayak Luxury Village.<br/>
+        Isla Mujeres, Quintana Roo, México.
+      </p>
+      <a class="btn-primary" href="#reservaciones" style="display:inline-block; margin-top:0.5rem;">
+        Cómo llegar
+      </a>
+    </div>
+    <div class="location-map fade-in" aria-label="Exterior Wayak al atardecer" style="background:none; padding:0; overflow:hidden;">
+      <img src="img/location.jpg" alt="Sendero exterior de Wayak Luxury Village al atardecer" style="width:100%;height:100%;object-fit:cover;display:block;" />
+    </div>
+  </section>
+
+  <!-- RESERVATIONS -->
+  <section class="reservations" id="reservaciones">
+    <p class="section-label">Disponibilidad</p>
+    <h2>Tu estadía <em>empieza aquí</em></h2>
+    <p>Disponibilidad en tiempo real. Fechas limitadas — reserva con anticipación.</p>
+    <div class="booking-bar">
+      <div class="booking-field">
+        <label for="check-in">Llegada</label>
+        <input type="date" id="check-in" name="check-in" />
+      </div>
+      <div class="booking-field">
+        <label for="check-out">Salida</label>
+        <input type="date" id="check-out" name="check-out" />
+      </div>
+      <div class="booking-field">
+        <label for="villa-type">Villa</label>
+        <select id="villa-type" name="villa-type">
+          <option value="">Seleccionar</option>
+          <option value="kamala">Villa Kamala</option>
+          <option value="wayak">Villa Wayak</option>
+        </select>
+      </div>
+      <div class="booking-field">
+        <label for="guests">Huéspedes</label>
+        <select id="guests" name="guests">
+          <option value="2">2 personas</option>
+          <option value="4">4 personas</option>
+          <option value="6">6 personas</option>
+          <option value="8">8 personas</option>
+        </select>
+      </div>
+      <button class="booking-submit" type="button">Verificar disponibilidad</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo-img" src="branding/Variable 1/Png/Wayak_V1_1.png" alt="Wayak Luxury Village" />
+        <p>Un village privado en Isla Mujeres donde el lujo verdadero no se mide en metros cuadrados, sino en la calidad de los momentos que ocurren dentro de ellos.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Experiencias</h4>
+        <ul>
+          <li><a href="#">Nuestras Villas</a></li>
+          <li><a href="#">Spa &amp; Bienestar</a></li>
+          <li><a href="#">Gastronomía</a></li>
+          <li><a href="#">Actividades</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#">Sobre Wayak</a></li>
+          <li><a href="#">Políticas</a></li>
+          <li><a href="#">Prensa</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+528112345678">+52 (81) 1234 5678</a></li>
+          <li><a href="mailto:reservaciones@wayak.mx">reservaciones@wayak.mx</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Wayak Luxury Village. Todos los derechos reservados.</span>
+      <span style="opacity:0.45; font-size:0.68rem; letter-spacing:0.1em;">Diseño por ilinium</span>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Stagger feature cards
+    document.querySelectorAll('.feature-card, .villa-card').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 80}ms`;
+    });
+  </script>
+
+</body>
+</html>
